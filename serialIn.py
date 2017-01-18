@@ -27,6 +27,28 @@ timeLimit = 300000 # 300000 milliseconds = 5 minutes
 lowestScore = sys.maxint
 gameOver = False
 
+#Functions that are used:
+# Flash "Game Over" on the screen for a few seconds before continuing
+def flash_game_over():
+    for x in xrange(0,5):
+        # Print "Game Over" to the screen (through glade)
+        print "The Game is over!!!"
+        time.sleep(1)
+        # Remove it from the screen
+
+        time.sleep(1)
+
+def addToScore(value):
+    global score
+    score = score + int(value)
+
+def incrementLevel():
+    global currentLevel
+    if currentLevel == 7:
+        global gameOver
+        gameOver = True
+    currentLevel = currentLevel + 1
+
 # Read the high scores from the file and store them in an array
 file = open("highScores.txt","rw")
 highScoreArray = []
@@ -41,13 +63,19 @@ for line in file:
 
 ser = serial.Serial("/dev/ttyACM0",9600)
 
-while 1:
+while gameOver == False:
     # Receive input from an Arduino
     rcv = ser.readline()
     if rcv != '':
         # Perform functions based on what the input is
-        print(rcv)
-
+        if rcv[:5] == "level":
+            incrementLevel()
+            print "Level is now", currentLevel
+        elif rcv[:5] == "score":
+            print rcv[6:-1]
+            addToScore(rcv[6:-1])
+            print "Score is now", score
+            
     # If the game is over
     if gameOver == True:
         flash_game_over()
@@ -66,18 +94,6 @@ while 1:
                     file.write(name + " " + score + "\n")
                     file.write(highScoreArray[i])
         exit
-    else:
+    #else:
         # Continue with the game
-        exit
 
-# Flash "Game Over" on the screen for a few seconds before continuing
-def flash_game_over():
-
-    for x in xrange(0,5):
-        # Print "Game Over" to the screen (through glade)
-
-        time.sleep(1)
-        # Remove it from the screen
-
-        time.sleep(1)
-    return
