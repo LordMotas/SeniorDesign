@@ -44,7 +44,7 @@ def addToScore(value):
 
 def incrementLevel():
     global currentLevel
-    if currentLevel == 7:
+    if currentLevel == MAX_LEVEL:
         global gameOver
         gameOver = True
     currentLevel = currentLevel + 1
@@ -53,13 +53,11 @@ def incrementLevel():
 file = open("highScores.txt","rw")
 highScoreArray = []
 
-i = 0
 # Read in each line of the file
 for line in file:
     highScoreArray.append(line[:-1])
     if lowestScore > int(line[6:]):
         lowestScore = int(line[6:])
-    i = i + 1
 
 ser = serial.Serial("/dev/ttyACM0",9600)
 
@@ -80,19 +78,20 @@ while gameOver == False:
     if gameOver == True:
         flash_game_over()
         # Check if they are on the high score board
+        print "Your score was: ", score
+        time.sleep(5)
         if score > lowestScore:
-            name = ""
+            print "You achieved a high score!"
+            time.sleep(5)
             # Have them enter their name (5 characters)
-
-
+            name = input("Enter your name (5 characters max): ")
             # Put the scores back in the file
-            i = 0
             hasEntered = false
             for element in highScoreArray:
                 if score > element and hasEntered == false:
                     hasEntered = true
-                    file.write(name + " " + score + "\n")
-                    file.write(highScoreArray[i])
+                    file.write(name[:5] + " " + score + "\n")
+                    file.write(element)
         exit
     #else:
         # Continue with the game
