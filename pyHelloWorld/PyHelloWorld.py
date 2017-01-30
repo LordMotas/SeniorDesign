@@ -18,9 +18,6 @@ class HelloWorldGTK:
 		self.window = self.glade.get_object("MainWindow")
 		if (self.window):
 			self.window.connect("destroy", Gtk.main_quit)
-		dic = { "on_btnHelloWorld_clicked" : self.btnHelloWorld_clicked,
-			"on_MainWindow_destroy" : Gtk.main_quit }
-		self.glade.signal_autoconnect(dic)
 
 	def btnHelloWorld_clicked(self, widget):
 		print "Hello World!"
