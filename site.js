@@ -1,0 +1,7 @@
+function readFileInformation(){
+
+}
+
+function updatePage(){
+
+}
