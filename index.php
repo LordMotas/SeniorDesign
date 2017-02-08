@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang='en-US'>
+<?php 
+echo "<html lang='en-US'>
 	<head>
 	  <!--Set the default character set-->
 	  <meta charset='UTF-8'>
@@ -14,23 +14,43 @@
 		<div class='container'>
 			<!--Orientation: Top center-->
 			<div class='title'>Harry Potter Pinball</div>
+			
 			<!--Orientation: Top Left-->
-			<div class='level'>Level: </div>
-			<!--Orientation: Bottom Center-->
-			<div class='score'>Score: </div>
+			<div class='level'>Level
+				<div class='levelValue'>1</div>
+			</div>
+
 			<!--Orientation: Top Right-->
-			<div class='balls'>Balls: </div>
+			<div class='balls'>Balls
+				<div class='ballsValue'>3</div>
+			</div>
+
 			<!--Orientation: Center-->
-			<div class='objective'>Objective:</div>
-			&lt;?php	$myfilename = "./data.txt";
-				var_dump("Stuff");
+			<div class='objective'>Objective
+				<div class='objectiveValue'>Find the Sorceror's Stone!</div>
+			</div>
+
+			<!--Orientation: Bottom Left-->
+			<div class='time'>Time Remaining
+				<div class='timeValue'>N/A</div>
+			</div>
+
+			<!--Orientation: Bottom Center-->
+			<div class='score'>Score
+				<div class='scoreValue'>6153428</div>
+			</div>";
+				$myfilename = "./data.txt";
 				if(file_exists($myfilename)){
-					var_dump("Testing");
-					var_dump(file_get_contents($myfilename));
+					while(true){
+						$fileContents = file_get_contents($myfilename);
+						//Parse the string and update the page with the new data
+						//This probably means call a javascript function
+				}
 				} else {
 					var_dump("No file found...");
 				}
-				?&gt;
-		</div>
+echo "		</div>
 	</body>
-</html>
+</html>";
+
+?>
