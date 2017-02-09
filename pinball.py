@@ -4,13 +4,15 @@
 import serial
 import time
 import sys
+import urllib
 
 # Necessary for web browser interaction
 import webbrowser
 import os
 
 #Open the local file to display on the monitor
-webbrowser.open('file://'+os.path.realpath("index.html"),new=0)
+#webbrowser.open('file://'+os.path.realpath("index.php"),new=0)
+urllib.urlopen('file://'+os.path.realpath("index.php"))
 
 # Constants:
 # MAX_LEVEL -> The total number of levels that will be used in the game
