@@ -1,3 +1,1 @@
-Score: 1000
-Level: 2
-Balls: 5
+Score 1001 Level 2 Balls 5 hasTime true Time 20000 Obj Kill the Basilisk

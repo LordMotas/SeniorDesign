@@ -20,27 +20,27 @@ echo "<html lang='en-US'>
 
 			<!--Orientation: Top Left-->
 			<div class='level'>Level
-				<div class='levelValue'>1</div>
+				<div class='levelValue' id='levelValue'>1</div>
 			</div>
 
 			<!--Orientation: Top Right-->
 			<div class='balls'>Balls
-				<div class='ballsValue'>3</div>
+				<div class='ballsValue' id='ballsValue'>3</div>
 			</div>
 
 			<!--Orientation: Center-->
 			<div class='objective'>Objective
-				<div class='objectiveValue'>Find the Sorceror's Stone!</div>
+				<div class='objectiveValue' id='objectiveValue'>Find the Sorceror's Stone!</div>
 			</div>
 
 			<!--Orientation: Bottom Left-->
-			<div class='time'>Time Remaining
-				<div class='timeValue'>N/A</div>
+			<div class='time' id='time'>Time Remaining
+				<div class='timeValue' id='timeValue'>N/A</div>
 			</div>
 
 			<!--Orientation: Bottom Center-->
 			<div class='score'>Score
-				<div class='scoreValue'>6153428</div>
+				<div class='scoreValue' id='scoreValue'>0</div>
 			</div>
 		</div>
 	</body>
