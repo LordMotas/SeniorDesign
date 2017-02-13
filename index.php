@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 echo "<html lang='en-US'>
 	<head>
 	  <!--Set the default character set-->

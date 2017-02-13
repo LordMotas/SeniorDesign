@@ -40,7 +40,7 @@ function update(override){
 			}
 		}
 		//parsed[11] to the end is the objective
-		console.log(parsed);
+		//console.log(parsed);
 	}
 	client.send();
 }
