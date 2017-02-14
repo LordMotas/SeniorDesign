@@ -5,7 +5,6 @@
 import serial
 import time
 import sys
-import urllib
 
 # Necessary for web browser interaction
 import webbrowser
@@ -25,52 +24,40 @@ MAX_LEVEL = 7
 # currentLevel -> The level that is currently being played
 # isTimed -> Whether a time limit is in play or not
 # timeLimit -> The amount of time that is left in the level
-# lowestScore -> The threshold score to beat to enter a high score
-# gameOver -> Whether the game is over or not
 
 score = 0
-lives = 5
+balls = 3
 currentLevel = 1
 isTimed = False
 timeLimit = 300000 # 300000 milliseconds = 5 minutes
-lowestScore = sys.maxint
-gameOver = False
+objective = "Find the Sorceror's Stone!"
 
 #Functions that are used:
-# Flash "Game Over" on the screen for a few seconds before continuing
-def flash_game_over():
-    for x in xrange(0,5):
-        # Print "Game Over" to the screen (through glade)
-        print "The Game is over!!!"
-        time.sleep(1)
-        # Remove it from the screen
-
-        time.sleep(1)
-
 def addToScore(value):
     global score
     score = score + int(value)
 
 def incrementLevel():
     global currentLevel
-    if currentLevel == MAX_LEVEL:
-        global gameOver
-        gameOver = True
     currentLevel = currentLevel + 1
 
+def modifyBalls(value):
+	global balls
+	balls = balls + int(value)
+	
 # Read the high scores from the file and store them in an array
-file = open("highScores.txt","rw")
-highScoreArray = []
+#file = open("highScores.txt","rw")
+#highScoreArray = []
 
 # Read in each line of the file
-for line in file:
-    highScoreArray.append(line[:-1])
-    if lowestScore > int(line[6:]):
-        lowestScore = int(line[6:])
+#for line in file:
+    #highScoreArray.append(line[:-1])
+    #if lowestScore > int(line[6:]):
+        #lowestScore = int(line[6:])
 
 ser = serial.Serial("/dev/ttyACM0",9600)
 
-while gameOver == False:
+while True:
     # Receive input from an Arduino
     rcv = ser.readline()
     if rcv != '':
@@ -79,29 +66,13 @@ while gameOver == False:
             incrementLevel()
             print "Level is now", currentLevel
         elif rcv[:5] == "score":
-            print rcv[6:-1]
             addToScore(rcv[6:-1])
             print "Score is now", score
-            
-    # If the game is over
-    if gameOver == True:
-        flash_game_over()
-        # Check if they are on the high score board
-        print "Your score was: ", score
-        time.sleep(5)
-        if score > lowestScore:
-            print "You achieved a high score!"
-            time.sleep(5)
-            # Have them enter their name (5 characters)
-            name = input("Enter your name (5 characters max): ")
-            # Put the scores back in the file
-            hasEntered = false
-            for element in highScoreArray:
-                if score > element and hasEntered == false:
-                    hasEntered = true
-                    file.write(name[:5] + " " + score + "\n")
-                    file.write(element)
-        exit
-    #else:
-        # Continue with the game
-
+	elif rcv[:5] == "balls":
+	    modifyBalls(rcv[6:-1])
+	    print "You now have ", balls, " balls left"
+	#Gather data based on every kind of interrupt the Arduino can do
+	#Print out the data to the data.txt file
+	file = open("data.txt", "w")
+	file.write("Score " + score + " Level " + currentLevel + " Balls " + balls + " hasTime " + isTimed + " Time " + timeLimit + " Obj " + objective)
+	file.close()
