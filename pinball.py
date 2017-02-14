@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # The documentation states that the maximum limit is 72 characters --> X
 
 # Import the needed libraries
@@ -11,8 +12,7 @@ import webbrowser
 import os
 
 #Open the local file to display on the monitor
-#webbrowser.open('file://'+os.path.realpath("index.php"),new=0)
-urllib.urlopen('file://'+os.path.realpath("index.php"))
+webbrowser.open("http://localhost/php/SeniorDesign/index.php",new=0)
 
 # Constants:
 # MAX_LEVEL -> The total number of levels that will be used in the game

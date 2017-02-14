@@ -1,5 +1,8 @@
 <?php
 
+//echo shell_exec("sudo python /var/www/html/php/SeniorDesign/pinball.py");
+//echo exec("sudo python /var/www/html/php/SeniorDesign/pinball.py");
+var_dump("Executed the program?");
 echo "<html lang='en-US'>
 	<head>
 	  <!--Set the default character set-->
