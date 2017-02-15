@@ -91,6 +91,7 @@ function updateTimer(prevMin, prevSec){
 		//Calculate the elapsed time from the last time
 		if(prevSec == 0 && prevMin == 0){
 			//Timer is finished
+			timerEnd();
 			return;
 		} else if(prevSec == 0 && prevMin != 0){
 			prevSec = 59;
@@ -101,4 +102,19 @@ function updateTimer(prevMin, prevSec){
 		document.getElementById("timeValue").innerHTML = prevMin + ':' + prevSec;
 		updateTimer(prevMin, prevSec);
 	}, 1000);
+}
+
+function timerEnd(){
+	var display = true;
+	//Flash the "Time's Up!" message on the screen
+	document.getElementById("timeValue").innerHTML = "Time's Up!";
+	setTimeout(function(){
+		if(display){
+			document.getElementById("time").style.display = "none";
+			display = false;
+		} else {
+			document.getElementById("time").style.display = "block";
+			display = true;
+		}
+	},500);
 }
