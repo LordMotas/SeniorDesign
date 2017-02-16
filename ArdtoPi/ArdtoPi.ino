@@ -8,10 +8,28 @@ void setup()
 void loop() {
   // put your main code here, to run repeatedly:
   //Interrupts should trigger if hardware happens
-  delay(4000);
-  Serial.print("score 300\n");
-  delay(4000);
+  delay(1000);
+  Serial.print("score 300 \n");
+  delay(1000);
   Serial.print("level \n");
+  delay(1000);
+  Serial.print("balls 1 \n");
+  delay(1000);
+  Serial.print("timer 300000 \n");
+  delay(1000);
+  Serial.print("timed true \n");
+  delay(1000);
+  Serial.print("timed false \n");
+  delay(1000);
+  Serial.print("objec Kill the Basilisk! \n");
+  while(true){
+    delay(500);
+    Serial.print("score 300 \n");
+    delay(500);
+    Serial.print("score 500 \n");
+    delay(500);
+    Serial.print("score -200 \n");
+  }
 }
 
 void InitialiseIO(){
