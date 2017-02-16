@@ -79,7 +79,7 @@ while True:
             #print "Level is now", currentLevel
         elif rcv[:5] == "score":
             addToScore(rcv[6:-1])
-            #print "Score is now", score
+            print "Score is now", score
 	elif rcv[:5] == "balls":
 	    modifyBalls(rcv[6:-1])
 	    #print "You now have ", balls, " balls left"

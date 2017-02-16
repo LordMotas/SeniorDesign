@@ -11,14 +11,11 @@ function gameState(){
 var game = new gameState();
 var parsed = "";
 var timerActive = false;
-var client = new XMLHttpRequest();
-client.open('GET', './data.txt'+'?n='+Date());
 
-function update(override){
-	//var client = new XMLHttpRequest();
-	//client.open('GET', './data.txt'+'?n='+Date());
+function update(){
+	var client = new XMLHttpRequest();
+	client.open('GET', './data.txt'+'?n='+Date());
 	client.onreadystatechange = function(){
-		//Changes to the data is here
 		game.raw = client.responseText;
 		//This is what needs to be parsed
 		//console.log(game.raw);
@@ -27,7 +24,7 @@ function update(override){
 			updateScore(parsed[1]);
 			updateLevel(parsed[3]);
 			updateBalls(parsed[5]);
-			/*if(parsed[7] == "true"){
+			if(parsed[7] == "true"){
 				//The timer should be set
 				showTimer();
 				if(timerActive == false){
@@ -39,16 +36,21 @@ function update(override){
 				//Hide the timer since there isn't one
 				hideTimer();
 				timerActive = false;
-			}*/
+			}
 		}
 		//parsed[11] to the end is the objective
 		//console.log(parsed);
 	}
-	//client.send();
+	client.send();
 	requestAnimationFrame(update);
 }
 
+console.log("Does it get here?");
+
 requestAnimationFrame(update);
+
+console.log("Makes it to the function");
+
 //setInterval('update()', 100); //Loop every 0.5 seconds
 
 function updateScore(currentScore){
@@ -84,8 +86,8 @@ function hideTimer(){
 function setTimer(timeToSet){
 	//console.log("Setting the timer");
 	timeAtTimerSet = performance.now();
-	let min = (timeToSet/1000/60) << 0;
-	let sec = (timeToSet/1000) % 60;
+	var min = (timeToSet/1000/60) << 0;
+	var sec = (timeToSet/1000) % 60;
 	document.getElementById("timeValue").innerHTML = min + ':' + sec;
 	updateTimer(min, sec);
 }
