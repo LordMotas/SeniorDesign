@@ -11,10 +11,12 @@ function gameState(){
 var game = new gameState();
 var parsed = "";
 var timerActive = false;
+var client = new XMLHttpRequest();
+client.open('GET', './data.txt'+'?n='+Date());
 
 function update(override){
-	var client = new XMLHttpRequest();
-	client.open('GET', './data.txt'+'?n='+Date());
+	//var client = new XMLHttpRequest();
+	//client.open('GET', './data.txt'+'?n='+Date());
 	client.onreadystatechange = function(){
 		//Changes to the data is here
 		game.raw = client.responseText;
@@ -25,7 +27,7 @@ function update(override){
 			updateScore(parsed[1]);
 			updateLevel(parsed[3]);
 			updateBalls(parsed[5]);
-			if(parsed[7] == "true"){
+			/*if(parsed[7] == "true"){
 				//The timer should be set
 				showTimer();
 				if(timerActive == false){
@@ -37,15 +39,17 @@ function update(override){
 				//Hide the timer since there isn't one
 				hideTimer();
 				timerActive = false;
-			}
+			}*/
 		}
 		//parsed[11] to the end is the objective
 		//console.log(parsed);
 	}
-	client.send();
+	//client.send();
+	requestAnimationFrame(update);
 }
 
-setInterval('update()', 5000); //Loop every 0.5 seconds
+requestAnimationFrame(update);
+//setInterval('update()', 100); //Loop every 0.5 seconds
 
 function updateScore(currentScore){
 	//console.log("current score is now:"+currentScore);

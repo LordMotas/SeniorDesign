@@ -45,6 +45,18 @@ def modifyBalls(value):
 	global balls
 	balls = balls + int(value)
 	
+def updateTime(value):
+	global timeLimit
+	timeLimit = int(value)
+	
+def changeTimerState(value):
+	global isTimed
+	isTimed = value
+	
+def changeObjective(value):
+	global objective
+	objective = value
+
 # Read the high scores from the file and store them in an array
 #file = open("highScores.txt","rw")
 #highScoreArray = []
@@ -64,15 +76,27 @@ while True:
         # Perform functions based on what the input is
         if rcv[:5] == "level":
             incrementLevel()
-            print "Level is now", currentLevel
+            #print "Level is now", currentLevel
         elif rcv[:5] == "score":
             addToScore(rcv[6:-1])
-            print "Score is now", score
+            #print "Score is now", score
 	elif rcv[:5] == "balls":
 	    modifyBalls(rcv[6:-1])
-	    print "You now have ", balls, " balls left"
+	    #print "You now have ", balls, " balls left"
+	elif rcv[:5] == "timed":
+	    changeTimerState(rcv[6:-1])
+	    #print "The timer status is now ", isTimed
+	elif rcv[:5] == "timer":
+	    updateTime(rcv[6:-1])
+	    #print "The timer value is now ", timeLimit
+	elif rcv[:5] == "objec":
+	    changeObjective(rcv[6:-1])
+	    #print "The objective has been changed to ", objective
+	else:
+	    print "Unrecognized change"
+	    
 	#Gather data based on every kind of interrupt the Arduino can do
 	#Print out the data to the data.txt file
 	file = open("data.txt", "w")
-	file.write("Score " + score + " Level " + currentLevel + " Balls " + balls + " hasTime " + isTimed + " Time " + timeLimit + " Obj " + objective)
+	file.write("Score " + str(score) + " Level " + str(currentLevel) + " Balls " + str(balls) + " hasTime " + str(isTimed) + " Time " + str(timeLimit) + " Obj " + objective)
 	file.close()
