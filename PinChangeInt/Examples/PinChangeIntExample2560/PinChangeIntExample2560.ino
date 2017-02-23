@@ -1,3 +1,5 @@
+#include <PinChangeInt.h>
+
 // PinChangeIntExample2560 
 // This only works for ATMega2560-based boards.
 // See the Arduino and the chip documentation for more details.
@@ -69,7 +71,7 @@ void setup() {
   attachPinChangeInterrupt(MYPIN2, quicfunc, FALLING);
   pinMode(MYPIN3, INPUT_PULLUP);
   attachPinChangeInterrupt(MYPIN3, pin3func, CHANGE);
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println("---------------------------------------");
 }
 
