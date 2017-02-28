@@ -1,18 +1,16 @@
 <?php
 echo "<html lang='en-US'>
 	<head>
-	  <!--Set the default character set-->
-	  <meta charset='UTF-8'>
-	  <meta http-equiv-'cache-control' content='no-cache'>
-	  <meta http-equiv='expires' content='0'>
-	  <meta http-equiv='pragma' content='no-cache'>
-	  <!--Import the stylesheet-->
-	  <link rel='stylesheet' href='styles.css'>
-	  <!--Import the javascript/jquery-->
-	  <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-	  <script src='script.js?n=1'></script>
+		<!--Set the default character set-->
+		<meta charset='UTF-8'>
+		<meta http-equiv-'cache-control' content='no-cache'>
+		<meta http-equiv='expires' content='0'>
+		<meta http-equiv='pragma' content='no-cache'>
+		<!--Import the stylesheet-->
+		<link rel='stylesheet' href='styles.css'>
+		<!--Import the javascript/jquery-->
 	</head>
-	<body>
+	<body class='content'>
 		<!--The container is the entire screen and will have a background image from Harry Potter-->
 		<div class='container'>
 			<!--Orientation: Top center-->
@@ -44,5 +42,11 @@ echo "<html lang='en-US'>
 			</div>
 		</div>
 	</body>
-</html>";
+</html>
+<video id='my-video' class='video' muted='' width='300' height='150'>
+	<source src='demo.mp4' type='video/mp4' />
+	<source src='demo.ogv' type='video/ogg' />
+	<source src='demo.webm' type='video/webm' />
+</video>
+<script src='script.js?n=1'></script>";
 ?>

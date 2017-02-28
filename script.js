@@ -1,126 +1,131 @@
-function gameState(){
-	this.level = 1;
-	this.score = 0;
-	this.balls = 3;
-	this.hasTimeLimit = false;
-	this.timeLimit = 300000; //Measured in milliseconds
-	this.objective = "Get the Sorcerer's Stone!";
-	this.raw = "";
-};
+(function() {
 
-var game = new gameState();
-var parsed = "";
-var timerActive = false;
+var video = document.getElementById('my-video');
+video.addEventListener("canplay", function() {
+	video.play();
+});
 
-function update(){
-	var client = new XMLHttpRequest();
-	client.open('GET', './data.txt'+'?n='+Date());
-	client.onreadystatechange = function(){
-		game.raw = client.responseText;
-		//This is what needs to be parsed
-		//console.log(game.raw);
-		parsed = game.raw.split(" ");
-		if(parsed[1] != undefined){
-			updateScore(parsed[1]);
-			updateLevel(parsed[3]);
-			updateBalls(parsed[5]);
-			if(parsed[7] == "true"){
-				//The timer should be set
-				showTimer();
-				if(timerActive == false){
-					console.log("Activating Timer");
-					setTimer(parsed[9]);
-					timerActive = true;
+	function gameState(){
+		this.level = 1;
+		this.score = 0;
+		this.balls = 3;
+		this.hasTimeLimit = false;
+		this.timeLimit = 300000; //Measured in milliseconds
+		this.objective = "Get the Sorcerer's Stone!";
+		this.raw = "";
+	};
+
+	var game = new gameState();
+	var parsed = "";
+	var timerActive = false;
+
+	function update(){
+		var client = new XMLHttpRequest();
+		client.open('GET', './data.txt'+'?n='+Date());
+		client.onreadystatechange = function(){
+			game.raw = client.responseText;
+			//This is what needs to be parsed
+			//console.log(game.raw);
+			parsed = game.raw.split(" ");
+			if(parsed[1] != undefined){
+				updateScore(parsed[1]);
+				updateLevel(parsed[3]);
+				updateBalls(parsed[5]);
+				if(parsed[7] == "true"){
+					//The timer should be set
+					showTimer();
+					if(timerActive == false){
+						console.log("Activating Timer");
+						setTimer(parsed[9]);
+						timerActive = true;
+					}
+				} else if(parsed[7] == "false"){
+					//Hide the timer since there isn't one
+					hideTimer();
+					timerActive = false;
 				}
-			} else if(parsed[7] == "false"){
-				//Hide the timer since there isn't one
-				hideTimer();
-				timerActive = false;
 			}
+			//parsed[11] to the end is the objective
+			//console.log(parsed);
 		}
-		//parsed[11] to the end is the objective
-		//console.log(parsed);
+		client.send();
+		requestAnimationFrame(update);
 	}
-	client.send();
+
 	requestAnimationFrame(update);
-}
 
-console.log("Does it get here?");
+	//setInterval('update()', 100); //Loop every 0.5 seconds
 
-requestAnimationFrame(update);
+	function updateScore(currentScore){
+		//console.log("current score is now:"+currentScore);
+		document.getElementById("scoreValue").innerHTML = currentScore;
+	}
 
-console.log("Makes it to the function");
+	function updateBalls(currentBalls){
+		//console.log("current balls is now:"+currentBalls);
+		document.getElementById("ballsValue").innerHTML = currentBalls;
+	}
 
-//setInterval('update()', 100); //Loop every 0.5 seconds
+	function updateLevel(currentLevel){
+		//console.log("current level is now:"+currentLevel);
+		document.getElementById("levelValue").innerHTML = currentLevel;
+	}
 
-function updateScore(currentScore){
-	//console.log("current score is now:"+currentScore);
-	document.getElementById("scoreValue").innerHTML = currentScore;
-}
+	function updateObjective(currentObjective){
+		//console.log("current objective is now:"+currentObjective);
+		document.getElementById("objectiveValue").innerHTML = currentObjective;
+	}
 
-function updateBalls(currentBalls){
-	//console.log("current balls is now:"+currentBalls);
-	document.getElementById("ballsValue").innerHTML = currentBalls;
-}
+	function showTimer(){
+		//console.log("Showing the timer");
+		document.getElementById("time").style.display = "block";
+	}
 
-function updateLevel(currentLevel){
-	//console.log("current level is now:"+currentLevel);
-	document.getElementById("levelValue").innerHTML = currentLevel;
-}
+	function hideTimer(){
+		//console.log("Hiding the timer");
+		document.getElementById("time").style.display = "none";
+	}
 
-function updateObjective(currentObjective){
-	//console.log("current objective is now:"+currentObjective);
-	document.getElementById("objectiveValue").innerHTML = currentObjective;
-}
+	function setTimer(timeToSet){
+		//console.log("Setting the timer");
+		timeAtTimerSet = performance.now();
+		var min = (timeToSet/1000/60) << 0;
+		var sec = (timeToSet/1000) % 60;
+		document.getElementById("timeValue").innerHTML = min + ':' + sec;
+		updateTimer(min, sec);
+	}
 
-function showTimer(){
-	//console.log("Showing the timer");
-	document.getElementById("time").style.display = "block";
-}
+	function updateTimer(prevMin, prevSec){
+		setTimeout(function() {
+			//Calculate the elapsed time from the last time
+			if(prevSec == 0 && prevMin == 0){
+				//Timer is finished
+				timerEnd();
+				return;
+			} else if(prevSec == 0 && prevMin != 0){
+				prevSec = 59;
+				prevMin = prevMin - 1;
+			} else {
+				prevSec = prevSec - 1;
+			}
+			document.getElementById("timeValue").innerHTML = prevMin + ':' + prevSec;
+			updateTimer(prevMin, prevSec);
+		}, 1000);
+	}
 
-function hideTimer(){
-	//console.log("Hiding the timer");
-	document.getElementById("time").style.display = "none";
-}
+	function timerEnd(){
+		var display = true;
+		//Flash the "Time's Up!" message on the screen
+		document.getElementById("timeValue").innerHTML = "Time's Up!";
+		setTimeout(function(){
+			if(display){
+				document.getElementById("time").style.display = "none";
+				display = false;
+			} else {
+				document.getElementById("time").style.display = "block";
+				display = true;
+			}
+		},500);
+	}
 
-function setTimer(timeToSet){
-	//console.log("Setting the timer");
-	timeAtTimerSet = performance.now();
-	var min = (timeToSet/1000/60) << 0;
-	var sec = (timeToSet/1000) % 60;
-	document.getElementById("timeValue").innerHTML = min + ':' + sec;
-	updateTimer(min, sec);
-}
-
-function updateTimer(prevMin, prevSec){
-	setTimeout(function() {
-		//Calculate the elapsed time from the last time
-		if(prevSec == 0 && prevMin == 0){
-			//Timer is finished
-			timerEnd();
-			return;
-		} else if(prevSec == 0 && prevMin != 0){
-			prevSec = 59;
-			prevMin = prevMin - 1;
-		} else {
-			prevSec = prevSec - 1;
-		}
-		document.getElementById("timeValue").innerHTML = prevMin + ':' + prevSec;
-		updateTimer(prevMin, prevSec);
-	}, 1000);
-}
-
-function timerEnd(){
-	var display = true;
-	//Flash the "Time's Up!" message on the screen
-	document.getElementById("timeValue").innerHTML = "Time's Up!";
-	setTimeout(function(){
-		if(display){
-			document.getElementById("time").style.display = "none";
-			display = false;
-		} else {
-			document.getElementById("time").style.display = "block";
-			display = true;
-		}
-	},500);
-}
+})();
