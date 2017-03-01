@@ -3,12 +3,12 @@ MyGame.screens['game-play'] = (function(game) {
 	var cancelNextRequest = false;
 	
 	function initialize() {
-		document.getElementById('id-game-play-back').addEventListener(
-		'click',
-		function() {
-			cancelNextRequest = true; 
-			game.showScreen('main-menu'); 
-		});
+		//document.getElementById('id-game-play-back').addEventListener(
+		//'click',
+		//function() {
+			//cancelNextRequest = true; 
+			//game.showScreen('main-menu'); 
+		//});
 	}
 
 	//------------------------------------------------------------------

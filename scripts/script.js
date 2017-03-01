@@ -1,9 +1,9 @@
 (function() {
 
-var video = document.getElementById('my-video');
+/*var video = document.getElementById('my-video');
 video.addEventListener("canplay", function() {
 	video.play();
-});
+});*/
 
 	function gameState(){
 		this.level = 1;
