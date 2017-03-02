@@ -18,9 +18,10 @@ video.addEventListener("canplay", function() {
 	var game = new gameState();
 	var parsed = "";
 	var timerActive = false;
-
+	var client = new XMLHttpRequest();
+	console.log("variables are defined");
+	
 	function update(){
-		var client = new XMLHttpRequest();
 		client.open('GET', './data.txt'+'?n='+Date());
 		client.onreadystatechange = function(){
 			game.raw = client.responseText;
@@ -86,11 +87,14 @@ video.addEventListener("canplay", function() {
 		document.getElementById("time").style.display = "none";
 	}
 
+	var min = 0;
+	var sec = 0;
+	console.log("min and sec are defined");
 	function setTimer(timeToSet){
 		//console.log("Setting the timer");
 		timeAtTimerSet = performance.now();
-		var min = (timeToSet/1000/60) << 0;
-		var sec = (timeToSet/1000) % 60;
+		min = (timeToSet/1000/60) << 0;
+		sec = (timeToSet/1000) % 60;
 		document.getElementById("timeValue").innerHTML = min + ':' + sec;
 		updateTimer(min, sec);
 	}

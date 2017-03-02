@@ -29,8 +29,8 @@ MyGame.screens['game-play'] = (function(game) {
 	function run() {
 		//
 		// Start the animation loop
-		cancelNextRequest = false;
-		requestAnimationFrame(gameLoop);
+		//cancelNextRequest = false;
+		//requestAnimationFrame(gameLoop);
 	}
 	
 	return {

@@ -11,12 +11,18 @@ echo "<html lang='en-US'>
 		<!--Import the javascript/jquery-->
 	</head>
 	<body  onload = 'MyGame.game.initialize();' class='content' id='game'>
+		<div class='title'>Harry Potter Pinball</div>
+		<div id='main-menu' class='screen active'>
+			<ul class = 'menu'>
+				<li id = 'id-new-game'>New&nbsp;Game</li>
+				<li id = 'id-high-scores'>High&nbsp;Scores</li>
+				<li id = 'id-help'>Help</li>
+				<li id = 'id-about'>About</li>
+			</ul>
+		</div>
 		<!--The container is the entire screen and will have a background image from Harry Potter-->
 		<div id='game-play' class='screen'>
 			<div class='container'>
-				<!--Orientation: Top center-->
-				<div class='title'>Harry Potter Pinball</div>
-
 				<!--Orientation: Top Left-->
 				<div class='level'>Level
 					<div class='levelValue' id='levelValue'>1</div>
@@ -43,31 +49,65 @@ echo "<html lang='en-US'>
 				</div>
 			</div>
 		</div>
-		<div id='main-menu' class='screen active'>
-			<ul class = 'menu'>
-				<li><button id = 'id-new-game'>New&nbsp;Game</button></li>
-				<li><button id = 'id-high-scores'>High&nbsp;Scores</button></li>
-				<li><button id = 'id-help'>Help</button></li>
-				<li><button id = 'id-about'>About</button></li>
-			</ul>
-		</div>
 		<div id='high-scores' class='screen'>
 			<h1>High Scores</h1>
-			<ol>
-				<li>10000</li>
-				<li>9000</li>
-				<li>8000</li>
-				<li>7000</li>
-			</ol>
+			<table class='table1'>
+				<th>Name</th>
+				<th>Score</th>
+				<tr>
+					<td>Motas</td>
+					<td>10000</td>
+				</tr>
+				<tr>
+					<td>Motas</td>
+					<td>9000</td>
+				</tr>
+				<tr>
+					<td>Motas</td>
+					<td>8000</td>
+				</tr>
+				<tr>
+					<td>Motas</td>
+					<td>7000</td>
+				</tr>
+				<tr>
+					<td>Motas</td>
+					<td>6000</td>
+				</tr>
+			</table>
+			<table class='table2'>
+				<th>Name</th>
+				<th>Score</th>
+				<tr>
+					<td>Motas</td>
+					<td>5000</td>
+				</tr>
+				<tr>
+					<td>Motas</td>
+					<td>4000</td>
+				</tr>
+				<tr>
+					<td>Motas</td>
+					<td>3000</td>
+				</tr>
+				<tr>
+					<td>Motas</td>
+					<td>2000</td>
+				</tr>
+				<tr>
+					<td>Motas</td>
+					<td>1000</td>
+				</tr>
+			</table>
 			<ul class='menu'>
-				<li><button id='id-high-scores-back'>Back</button></li>
+				<li id='id-high-scores-back'>Back</li>
 			</ul>
 		</div>
 		<div id='help' class='screen'>
 			<h1>Help</h1>
 			<p>This is some help on how to play the game</p>
 			<ul class='menu'>
-				<li><nutton id='id-help-back'>Back</button></li>
+				<li id='id-help-back'>Back</li>
 			</ul>
 		</div>
 		<div id='about' class='screen'>
@@ -75,7 +115,7 @@ echo "<html lang='en-US'>
 			<p>Developed by</p>
 			<p>Jordan Haws, Joshua Lake, and Tanner Olsen</p>
 			<ul class='menu'>
-				<li><nutton id='id-about-back'>Back</button></li>
+				<li id='id-about-back'>Back</li>
 			</ul>
 		</div>
 		<script src='scripts/script.js?n=1'></script>
@@ -86,11 +126,5 @@ echo "<html lang='en-US'>
 		<script src = 'scripts/help.js'></script>
 		<script src = 'scripts/about.js'></script>
 	</body>
-</html>
-<!---
-<video id='my-video' class='video' muted='' width='300' height='150'>
-	<source src='demo.mp4' type='video/mp4' />
-	<source src='demo.ogv' type='video/ogg' />
-	<source src='demo.webm' type='video/webm' />
-</video>--->";
+</html>";
 ?>
