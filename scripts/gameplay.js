@@ -3,12 +3,10 @@ MyGame.screens['game-play'] = (function(game) {
 	var cancelNextRequest = false;
 	
 	function initialize() {
-		//document.getElementById('id-game-play-back').addEventListener(
-		//'click',
-		//function() {
-			//cancelNextRequest = true; 
-			//game.showScreen('main-menu'); 
-		//});
+		MyGame.gameState.myKeyboard.registerCommand(KeyEvent.DOM_VK_ESCAPE, function() {
+			cancelNextRequest = true;
+			game.showScreen('main-menu'); 
+		});
 	}
 
 	//------------------------------------------------------------------
@@ -17,7 +15,8 @@ MyGame.screens['game-play'] = (function(game) {
 	//
 	//------------------------------------------------------------------
 	function gameLoop(time) {
-		
+		MyGame.gameState.update();
+		MyGame.gameState.processInput();
 		// update(elapsedTime);
 		// render(elapsedTime);
 		
@@ -27,10 +26,9 @@ MyGame.screens['game-play'] = (function(game) {
 	}
 	
 	function run() {
-		//
 		// Start the animation loop
-		//cancelNextRequest = false;
-		//requestAnimationFrame(gameLoop);
+		cancelNextRequest = false;
+		requestAnimationFrame(gameLoop);
 	}
 	
 	return {

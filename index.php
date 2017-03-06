@@ -11,7 +11,7 @@ echo "<html lang='en-US'>
 		<!--Import the javascript/jquery-->
 	</head>
 	<body  onload = 'MyGame.game.initialize();' class='content' id='game'>
-		<div class='title'>Harry Potter Pinball</div>
+		<div id='first-title' class='title'>Harry Potter Pinball</div>
 		<div id='main-menu' class='screen active'>
 			<ul class = 'menu'>
 				<li id = 'id-new-game'>New&nbsp;Game</li>
@@ -22,31 +22,29 @@ echo "<html lang='en-US'>
 		</div>
 		<!--The container is the entire screen and will have a background image from Harry Potter-->
 		<div id='game-play' class='screen'>
-			<div class='container'>
-				<!--Orientation: Top Left-->
-				<div class='level'>Level
-					<div class='levelValue' id='levelValue'>1</div>
-				</div>
+			<!--Orientation: Top Left-->
+			<div class='level'>Level
+				<div class='levelValue' id='levelValue'>1</div>
+			</div>
 
-				<!--Orientation: Top Right-->
-				<div class='balls'>Balls
-					<div class='ballsValue' id='ballsValue'>3</div>
-				</div>
+			<!--Orientation: Top Right-->
+			<div class='balls'>Balls
+				<div class='ballsValue' id='ballsValue'>3</div>
+			</div>
 
-				<!--Orientation: Center-->
-				<div class='objective'>Objective
-					<div class='objectiveValue' id='objectiveValue'>Find the Sorceror's Stone!</div>
-				</div>
+			<!--Orientation: Center-->
+			<div class='objective'>Objective
+				<div class='objectiveValue' id='objectiveValue'>Find the Sorceror's Stone!</div>
+			</div>
 
-				<!--Orientation: Bottom Left-->
-				<div class='time' id='time'>Time Remaining
-					<div class='timeValue' id='timeValue'>N/A</div>
-				</div>
+			<!--Orientation: Bottom Left-->
+			<div class='time' id='time'>Time Remaining
+				<div class='timeValue' id='timeValue'>N/A</div>
+			</div>
 
-				<!--Orientation: Bottom Center-->
-				<div class='score'>Score
-					<div class='scoreValue' id='scoreValue'>0</div>
-				</div>
+			<!--Orientation: Bottom Center-->
+			<div class='score'>Score
+				<div class='scoreValue' id='scoreValue'>0</div>
 			</div>
 		</div>
 		<div id='high-scores' class='screen'>
@@ -118,8 +116,7 @@ echo "<html lang='en-US'>
 				<li id='id-about-back'>Back</li>
 			</ul>
 		</div>
-		<script src='scripts/script.js?n=1'></script>
-		<script src = 'scripts/game.js'></script>
+		<script src = 'scripts/game.js?n=1'></script>
 		<script src = 'scripts/mainmenu.js'></script>
 		<script src = 'scripts/gameplay.js'></script>
 		<script src = 'scripts/highscores.js'></script>
