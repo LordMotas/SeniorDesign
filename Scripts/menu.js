@@ -1,7 +1,7 @@
 // This namespace holds the Game main menu
 Game.menu = (function(components, music, input, model){
 	'use strict';
-	
+
 	var currentMenu,
 		textTemp,
 		highScoreArray = [],
@@ -145,24 +145,23 @@ Game.menu = (function(components, music, input, model){
 		},
 		menuSelection = 0,
 		previousSelection = 0,
-		previousMenuSelection,
-		menuChanges = true;
-	
+		previousMenuSelection;
+
 	var that = {
 
 	};
 
 	that.initialize = function(){
 		currentMenu = 0;
-		
+
 		//Initialize each menu
-		
+
 		//Initialize the main menu
 		mainMenu.push({text : textStart, select : 1});
 		mainMenu.push({text : textHighScores, select : 2});
 		mainMenu.push({text : textHelp, select : 3});
 		mainMenu.push({text : textAbout, select : 4});
-		
+
 		//Initialize the gameplay section
 		gamePlay.push({text : textLevel});
 		gamePlay.push({text : textLevelValue});
@@ -174,15 +173,15 @@ Game.menu = (function(components, music, input, model){
 		gamePlay.push({text : textTimeValue});
 		gamePlay.push({text : textScore});
 		gamePlay.push({text : textScoreValue});
-		
+
 		//Initialize the high score page
 		highScoreArray = JSON.parse(localStorage.getItem('highScores'));
 		if(highScoreArray === null){
 			highScoreArray = [
-				{name : 'Motas', score : 1000},  
-				{name : 'Motas', score : 800}, 
-				{name : 'Motas', score : 600}, 
-				{name : 'Motas', score : 400}, 
+				{name : 'Motas', score : 1000},
+				{name : 'Motas', score : 800},
+				{name : 'Motas', score : 600},
+				{name : 'Motas', score : 400},
 				{name : 'Motas', score : 200}
 			];
 		}
@@ -197,18 +196,18 @@ Game.menu = (function(components, music, input, model){
 		}
 		//This is how to put the high score into local storage
 		//localStorage.setItem("highScores", JSON.stringify(highScoreArray));
-		
+
 		//Initialize the help section
 		helpMenu.push({text : textControls, back : 0});
 		helpMenu.push({text : textFlipperSummary});
 		helpMenu.push({text : textLeftFlipper});
 		helpMenu.push({text : textRightFlipper});
 		helpMenu.push({text : textPlunger});
-		
+
 		//Initialize the about section
 		aboutMenu.push({text : textDeveloped, back : 0});
 		aboutMenu.push({text : textAboutInfo});
-		
+
 		//index 0
 		menus.push({
 			menuItem : mainMenu,
@@ -218,7 +217,7 @@ Game.menu = (function(components, music, input, model){
 				keys : [input.KeyEvent.DOM_VK_DOWN, input.KeyEvent.DOM_VK_UP, input.KeyEvent.DOM_VK_RETURN, input.KeyEvent.DOM_VK_X],
 			},
 		});
-		
+
 		//index 1
 		menus.push({
 			menuItem : gamePlay,
@@ -229,7 +228,7 @@ Game.menu = (function(components, music, input, model){
 			},
 			func : function(){model.initialize();}
 		});
-		
+
 		//index 2
 		menus.push({
 			menuItem : highScoreMenu,
@@ -245,7 +244,7 @@ Game.menu = (function(components, music, input, model){
 				keys : [input.KeyEvent.DOM_VK_X],
 			}
 		});
-		
+
 		//index 3
 		menus.push({
 			menuItem : helpMenu,
@@ -261,7 +260,7 @@ Game.menu = (function(components, music, input, model){
 				keys : [input.KeyEvent.DOM_VK_X],
 			}
 		});
-		
+
 		//index 4
 		menus.push({
 			menuItem : aboutMenu,
@@ -277,13 +276,15 @@ Game.menu = (function(components, music, input, model){
 				keys : [input.KeyEvent.DOM_VK_X],
 			}
 		});
+
+		music.playSound('Audio/menuRemix');
 	};
-	
+
 	function changeSelectionVisual(currentMenu, oldID, newID){
 		menus[currentMenu].menuItem[oldID].text.fill = 'rgba(136, 136, 136, 1)';
 		menus[currentMenu].menuItem[newID].text.fill = 'rgba(255, 255, 255, 1)';
 	}
-	
+
 	function updateTexts(){
 		gamePlay[1].text.text = model.level; //textLevelValue
 		gamePlay[3].text.text = model.balls; //textBallsValue
@@ -291,7 +292,7 @@ Game.menu = (function(components, music, input, model){
 		gamePlay[7].text.text = model.timeLimit;//textTimeValue
 		gamePlay[9].text.text = model.score; //textScoreValue
 	}
-	
+
 	//This function is used to update the state of the Game model
 	that.update = function(elapsedTime){
 		//Update the menu item that is being hovered
@@ -309,7 +310,7 @@ Game.menu = (function(components, music, input, model){
 			menuSelection++;
 		}
 	};
-	
+
 	that.toggleMenuUp = function(){
 		//Move the menu selection up one
 		if(menuSelection != 0){
@@ -317,7 +318,7 @@ Game.menu = (function(components, music, input, model){
 			menuSelection--;
 		}
 	};
-	
+
 	//Selects the option currently highlighted
 	that.selectMenu = function(myKeyboard){
 		if(menus[currentMenu].menuItem[menuSelection].hasOwnProperty('select')){
@@ -339,14 +340,14 @@ Game.menu = (function(components, music, input, model){
 				for(var i = 0; i < menus[currentMenu].reg.handlers.length; i++){
 					myKeyboard.registerHandler(
 						menus[currentMenu].reg.handlers[i],
-						menus[currentMenu].reg.keys[i], 
+						menus[currentMenu].reg.keys[i],
 						false
 					);
 				}
 			}
 		}
 	};
-	
+
 	//Traverses to the previous menu
 	that.cancelButton = function(myKeyboard){
 		//Cancel out of whatever menu we happen to be in
@@ -367,19 +368,19 @@ Game.menu = (function(components, music, input, model){
 				for(var i = 0; i < menus[currentMenu].reg.handlers.length; i++){
 					myKeyboard.registerHandler(
 						menus[currentMenu].reg.handlers[i],
-						menus[currentMenu].reg.keys[i], 
+						menus[currentMenu].reg.keys[i],
 						false
-					);					
+					);
 				}
 			}
 		}
 	}
-	
+
 	//This function renders the Game model
 	that.render = function(renderer){
 		//Draw the title
 		renderer.core.drawText(textTitle);
-		
+
 		//Draw the correct menu
 		for(var i = 0; i < menus[currentMenu].menuItem.length; i++){
 			renderer.core.drawText(menus[currentMenu].menuItem[i].text);

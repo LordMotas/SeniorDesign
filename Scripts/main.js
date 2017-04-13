@@ -2,21 +2,22 @@
 Game.main = (function(renderer, input, menu){
 	'use strict';
 	var lastTimeStamp = performance.now();
-	
+
 	//Process any captured input
 	function processInput(elapsedTime){
 		myKeyboard.update(elapsedTime);
 	}
 
 	//Update the simulation
-	function update(elapsedTime){		
+	function update(elapsedTime){
 		menu.update(elapsedTime);
 	}
 
 	//Render the game
 	function render(elapsedTime){
-		renderer.core.clearCanvas();		
+		renderer.core.clearCanvas();
 		menu.render(Game.renderer);
+		console.log("rendering");
 	}
 
 	//The gameloop

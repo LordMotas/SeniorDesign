@@ -29,23 +29,23 @@ Game.model = (function(components){
 		that.client.onreadystatechange = function(){
 			that.raw = that.client.responseText;
 			//This is what needs to be parsed
-			//console.log(game.raw);
 			that.parsed = that.raw.split(" ");
+			console.log(that.parsed);
 			if(that.parsed[1] != undefined){
 				that.updateScore(that.parsed[1]);
 				that.updateLevel(that.parsed[3]);
 				that.updateBalls(that.parsed[5]);
 				if(that.parsed[7] == "true"){
 					//The timer should be set
-					that.showTimer();
+					//that.showTimer();
 					if(that.timerActive == false){
 						console.log("Activating Timer");
-						that.setTimer(parsed[9]);
+						//that.setTimer(parsed[9]);
 						that.timerActive = true;
 					}
 				} else if(that.parsed[7] == "false"){
 					//Hide the timer since there isn't one
-					that.hideTimer();
+					//that.hideTimer();
 					that.timerActive = false;
 				}
 			}
@@ -53,7 +53,7 @@ Game.model = (function(components){
 			//console.log(parsed);
 		}
 		that.client.send();
-	};	
+	};
 
 	that.updateScore = function(currentScore){
 		that.score = currentScore;
@@ -70,7 +70,7 @@ Game.model = (function(components){
 	that.updateObjective = function(currentObjective){
 		that.objective = currentObjective;
 	};
-	
+
 	//This function renders the Game model
 	that.render = function(renderer){
 		//Empty
