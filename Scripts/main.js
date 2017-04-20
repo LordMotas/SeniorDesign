@@ -17,7 +17,6 @@ Game.main = (function(renderer, input, menu){
 	function render(elapsedTime){
 		renderer.core.clearCanvas();
 		menu.render(Game.renderer);
-		console.log("rendering");
 	}
 
 	//The gameloop

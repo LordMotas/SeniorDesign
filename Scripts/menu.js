@@ -277,7 +277,7 @@ Game.menu = (function(components, music, input, model){
 			}
 		});
 
-		music.playSound('Audio/menuRemix');
+		//music.playSound('Audio/menuRemix');
 	};
 
 	function changeSelectionVisual(currentMenu, oldID, newID){
@@ -288,7 +288,8 @@ Game.menu = (function(components, music, input, model){
 	function updateTexts(){
 		gamePlay[1].text.text = model.level; //textLevelValue
 		gamePlay[3].text.text = model.balls; //textBallsValue
-		gamePlay[5].text.text = model.objective; //textObjectiveValue
+		gamePlay[5].text = model.objective; //textObjectiveValue
+		gamePlay[6].text.text = model.timeLimitLabel;//textTime
 		gamePlay[7].text.text = model.timeLimit;//textTimeValue
 		gamePlay[9].text.text = model.score; //textScoreValue
 	}

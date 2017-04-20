@@ -7,8 +7,7 @@ Game.renderer.core = (function(){
 			size: 0,
 			top: 0,
 			left: 0
-		},
-		resizeHandlers = [];
+		};
 
 	//Used to set the size of the canvas to match the size of the browser
 	function resizeCanvas(){
@@ -30,39 +29,11 @@ Game.renderer.core = (function(){
 			world.top = Math.floor(canvas.height * 0.05);
 			world.left = (canvas.width - world.size) / 2;
 		}
-
-		//Let the resizeHandlers know of the resizing
-		for(handler in resizeHandlers){
-			resizeHandlers[handler]();
-		}
 	}
 
 	//Allow other parts of the code to know when a resize event occurs
 	function notifyResize(handler){
 		resizeHandlers.push(handler);
-	}
-
-	//Toggles the full-screen mode
-	function toggleFullScreen(element){
-		var	fullScreenElement = document.fullscreenElement ||
-								document.webkitFullscreenElement ||
-								document.mozFullScreenElement ||
-								document.msFullscreenElement;
-
-		element.requestFullScreen = element.requestFullScreen ||
-									element.webkitRequestFullscreen ||
-									element.mozRequestFullScreen ||
-									element.msRequestFullscreen;
-		document.exitFullscreen =	document.exitFullscreen ||
-									document.webkitExitFullscreen ||
-									document.mozCancelFullScreen ||
-									document.msExitFullscreen;
-
-		if(!fullScreenElement && element.requestFullScreen){
-			element.requestFullScreen();
-		}else if(fullScreenElement){
-			document.exitFullscreen();
-		}
 	}
 
 	//Clear the whole canvas
@@ -171,14 +142,13 @@ Game.renderer.core = (function(){
 	return {
 		initialize: initialize,
 		clearCanvas: clearCanvas,
-		toggleFullScreen: toggleFullScreen,
 		drawText: drawText,
 		measureTextHeight: measureTextHeight,
 		measureTextWidth: measureTextWidth,
 		drawLine: drawLine,
 		drawRectangle: drawRectangle,
 		drawCircle: drawCircle,
-		notifyResize: notifyResize
+		notifyResize: notifyResize,
 	};
 
 }());
