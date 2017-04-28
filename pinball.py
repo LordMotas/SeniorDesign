@@ -10,6 +10,12 @@ import sys
 import webbrowser
 import os
 
+# Necessary for music playing
+import pygame
+pygame.mixer.init()
+pygame.mixer.music.load("Audio/menuRemix.mp3");
+pygame.mixer.music.play();
+
 #Open the local file to display on the monitor
 webbrowser.open("http://localhost/php/SeniorDesign/index.html",new=0)
 
