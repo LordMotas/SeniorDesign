@@ -277,7 +277,7 @@ Game.menu = (function(components, music, input, model){
 			}
 		});
 
-		//music.playSound('Audio/menuRemix');
+		music.playSound('Audio/menuRemix');
 	};
 
 	function changeSelectionVisual(currentMenu, oldID, newID){

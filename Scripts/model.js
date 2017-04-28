@@ -24,6 +24,7 @@ Game.model = (function(core){
 		that.parsed = "";
 		that.timerActive = false;
 		that.client = new XMLHttpRequest();
+		that.timeLimitLabel = "";
 	};
 
 	//This function is used to update the state of the Game model

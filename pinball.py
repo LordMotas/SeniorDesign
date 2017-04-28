@@ -17,7 +17,7 @@ pygame.mixer.music.load("Audio/menuRemix.mp3");
 pygame.mixer.music.play();
 
 #Open the local file to display on the monitor
-webbrowser.open("http://localhost/php/SeniorDesign/index.html",new=0)
+webbrowser.open("http://localhost/SeniorDesign/index.html",new=0)
 
 # Constants:
 # MAX_LEVEL -> The total number of levels that will be used in the game
