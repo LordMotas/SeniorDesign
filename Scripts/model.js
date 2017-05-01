@@ -25,6 +25,9 @@ Game.model = (function(core){
 		that.timerActive = false;
 		that.client = new XMLHttpRequest();
 		that.timeLimitLabel = "";
+		core.setUpVideo();
+		core.setVideoSource('demo.mp4');
+		core.playVideo();
 	};
 
 	//This function is used to update the state of the Game model
@@ -63,7 +66,6 @@ Game.model = (function(core){
 	};
 
 	function hideTimer(){
-		that.timeLimit = "";
 		that.timeLimitLabel = "";
 	}
 
@@ -87,7 +89,7 @@ Game.model = (function(core){
 		setTimeout(function(){
 			//Calculate the elapsed time from the last time
 			if(prevSec === 0 && prevMin === 0){
-				timerEnd(numTimes, true);
+				timerEnd();
 				return;
 			} else if(prevSec === 0 && prevMin !== 0){
 				prevSec = 59;
@@ -100,20 +102,28 @@ Game.model = (function(core){
 		}, 1000);
 	}
 
-	function timerEnd(timesRemaining, display){
-		//Figure out how this works
-		if(timesRemaining !== 0){
-			if(display){
-				that.timeLimit = "Time's Up!";
-				showTimer();
-				console.log("timer is Time's Up");
-				display = false;
-			} else {
-				hideTimer();
-				display = true;
-			}
-			setTimeout(timerEnd(timesRemaining--, display), 500);
-		}
+	function timerEnd(){
+		setTimeout(function(){
+			that.timeLimit = "Time's Up!";
+			setTimeout(function(){
+				that.timeLimit = "";
+				setTimeout(function(){
+					that.timeLimit = "Time's Up!";
+					setTimeout(function(){
+						that.timeLimit = "";
+						setTimeout(function(){
+							that.timeLimit = "Time's Up!";
+							setTimeout(function(){
+								that.timeLimit = "";
+								setTimeout(function(){
+									that.timeLimit = "N/A";
+								}, 500);
+							}, 500);
+						}, 500);
+					}, 500);
+				}, 500);
+			}, 500);
+		}, 500);
 	}
 
 	//Updating functions

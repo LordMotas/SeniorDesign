@@ -1,6 +1,6 @@
-@font-face { 
-	font-family: 'ParryHotter';	
-	src: url('ParryHotter.ttf'); 
+@font-face {
+	font-family: 'ParryHotter';
+	src: url('ParryHotter.ttf');
 }
 
 body {
@@ -17,4 +17,12 @@ body {
 	position: absolute;
 	width: 100%;
 	height: 100%;
+}
+
+#theVideo {
+	position: absolute;
+	width: 25%;
+	height: 25%;
+	z-index: 1;
+	display: none !important;
 }

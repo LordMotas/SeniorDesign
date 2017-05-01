@@ -1,5 +1,5 @@
 // This namespace holds the Game main menu
-Game.menu = (function(components, music, input, model){
+Game.menu = (function(components, input, model){
 	'use strict';
 
 	var currentMenu,
@@ -276,8 +276,6 @@ Game.menu = (function(components, music, input, model){
 				keys : [input.KeyEvent.DOM_VK_X],
 			}
 		});
-
-		music.playSound('Audio/menuRemix');
 	};
 
 	function changeSelectionVisual(currentMenu, oldID, newID){
@@ -394,4 +392,4 @@ Game.menu = (function(components, music, input, model){
 
 	return that;
 
-}(Game.components, Game.music, Game.input, Game.model));
+}(Game.components, Game.input, Game.model));
