@@ -26,7 +26,7 @@ Game.model = (function(core){
 		that.client = new XMLHttpRequest();
 		that.timeLimitLabel = "Time Remaining";
 		core.setUpVideo();
-		core.setVideoSource('demo.mp4');
+		core.setVideoSource('demo1.mp4');
 		core.playVideo();
 	};
 
