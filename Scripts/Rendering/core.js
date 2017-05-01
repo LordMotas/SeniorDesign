@@ -63,7 +63,7 @@ Game.renderer.core = (function(){
 	}
 
 	function setUpVideo(){
-		video.addEventListener('ended', function(){videoFinished = true;cancelNextRequest = false;}, false);
+		video.addEventListener('ended', function(){videoFinished = true;}, false);
 	}
 
 	//Renders the text based on the provided spec
@@ -84,10 +84,6 @@ Game.renderer.core = (function(){
 
 	function renderVideo(){
 		drawVideo(video, canvas.width, canvas.height);
-	}
-
-	function getVideo(){
-		return video;
 	}
 
 	function setVideoSource(source){
@@ -180,8 +176,7 @@ Game.renderer.core = (function(){
 		notifyResize: notifyResize,
 		renderVideo: renderVideo,
 		setUpVideo: setUpVideo,
-		setVideoSource: setVideoSource,
-		playVideo: playVideo
+		setVideoSource: setVideoSource
 	};
 
 }());

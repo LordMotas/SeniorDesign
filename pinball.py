@@ -13,11 +13,12 @@ import os
 # Necessary for music playing
 import pygame
 pygame.mixer.init()
-pygame.mixer.music.load("Audio/menuRemix.mp3");
-pygame.mixer.music.play();
+
+#pygame.mixer.music.load("Audio/menuRemix.mp3");
+#pygame.mixer.music.play();
 
 #Open the local file to display on the monitor
-webbrowser.open("http://localhost/SeniorDesign/index.html",new=0)
+webbrowser.open("http://localhost/SeniorDesign/index.html", new=0)
 
 # Constants:
 # MAX_LEVEL -> The total number of levels that will be used in the game
@@ -37,6 +38,43 @@ currentLevel = 1
 isTimed = False
 timeLimit = 300000 # 300000 milliseconds = 5 minutes
 objective = "Find the Sorceror's Stone!"
+movie = False
+
+#Dictionary holding level data
+def levelDictionary(value):
+    return {
+        2:setLevelTwo(),
+        3:setLevelThree(),
+        4:setLevelFour(),
+        5:setLevelFive(),
+        6:setLevelSix(),
+        7:setLevelSeven()
+    }[value]
+
+#Functions used by the Dictionary
+def setLevelTwo():
+    isTimed = False
+    objective = "Kill the Basilisk!"
+
+def setLevelThree():
+    isTimed = False
+    objective = ""
+
+def setLevelFour():
+    isTimed = False
+    objective = ""
+
+def setLevelFive():
+    isTimed = False
+    objective = ""
+
+def setLevelSix():
+    isTimed = False
+    objective = ""
+
+def setLevelSeven():
+    isTimed = False
+    objective = ""
 
 #Functions that are used:
 def addToScore(value):
@@ -46,19 +84,22 @@ def addToScore(value):
 def incrementLevel():
     global currentLevel
     currentLevel = currentLevel + 1
+    movie = True
+    #If statements here to determine music to be played
+    levelDictionary(currentLevel)
 
 def modifyBalls(value):
 	global balls
 	balls = balls + int(value)
-	
+
 def updateTime(value):
 	global timeLimit
 	timeLimit = int(value)
-	
+
 def changeTimerState(value):
 	global isTimed
 	isTimed = value
-	
+
 def changeObjective(value):
 	global objective
 	objective = value
@@ -72,6 +113,7 @@ def changeObjective(value):
     #highScoreArray.append(line[:-1])
     #if lowestScore > int(line[6:]):
         #lowestScore = int(line[6:])
+#file.close()
 
 ser = serial.Serial("/dev/ttyACM0",9600)
 
@@ -85,7 +127,7 @@ while True:
             #print "Level is now", currentLevel
         elif rcv[:5] == "score":
             addToScore(rcv[6:-1])
-            print "Score is now", score
+            #print "Score is now", score
 	elif rcv[:5] == "balls":
 	    modifyBalls(rcv[6:-1])
 	    #print "You now have ", balls, " balls left"
@@ -95,14 +137,16 @@ while True:
 	elif rcv[:5] == "timer":
 	    updateTime(rcv[6:-1])
 	    #print "The timer value is now ", timeLimit
-	elif rcv[:5] == "objec":
-	    changeObjective(rcv[6:-1])
+	#elif rcv[:5] == "objec":
+	    #changeObjective(rcv[6:-1])
 	    #print "The objective has been changed to ", objective
 	else:
 	    print "Unrecognized change"
-	    
+
 	#Gather data based on every kind of interrupt the Arduino can do
 	#Print out the data to the data.txt file
 	file = open("data.txt", "w")
-	file.write("Score " + str(score) + " Level " + str(currentLevel) + " Balls " + str(balls) + " hasTime " + str(isTimed) + " Time " + str(timeLimit) + " Obj " + objective)
+	file.write("Score " + str(score) + " Level " + str(currentLevel) + " Balls " + str(balls) + " hasTime " + str(isTimed) + " Time " + str(timeLimit) + " " + str(currentLevel) + " " + str(movie) + " Obj " + objective)
+    if(movie == True)
+        movie = False
 	file.close()
