@@ -1,5 +1,5 @@
 //This namespace provides the simulation loop for the Touhou Game.
-Game.main = (function(renderer, input, menu){
+Game.main = (function(renderer, input, menu, model){
 	'use strict';
 	var lastTimeStamp = performance.now();
 
@@ -16,7 +16,11 @@ Game.main = (function(renderer, input, menu){
 	//Render the game
 	function render(elapsedTime){
 		renderer.core.clearCanvas();
-		menu.render(Game.renderer);
+		//console.log(videoFinished);
+		if(!videoFinished)
+			renderer.core.renderVideo();
+		else
+			menu.render(Game.renderer);
 	}
 
 	//The gameloop
@@ -67,4 +71,4 @@ Game.main = (function(renderer, input, menu){
 		initialize: initialize
 	};
 
-}(Game.renderer, Game.input, Game.menu));
+}(Game.renderer, Game.input, Game.menu, Game.model));
