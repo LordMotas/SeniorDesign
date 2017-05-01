@@ -176,7 +176,8 @@ Game.renderer.core = (function(){
 		notifyResize: notifyResize,
 		renderVideo: renderVideo,
 		setUpVideo: setUpVideo,
-		setVideoSource: setVideoSource
+		setVideoSource: setVideoSource,
+		playVideo: playVideo
 	};
 
 }());

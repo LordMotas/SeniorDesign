@@ -1,1 +1,1 @@
-Score 7000 Level 1 Balls 3 hasTime false Time 3000 1 true Obj Kill the Basilisk!
+Score 7000 Level 1 Balls 3 hasTime false Time 3000 1 false Obj Kill the Basilisk!
