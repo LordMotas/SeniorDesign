@@ -25,9 +25,6 @@ Game.model = (function(core){
 		that.timerActive = false;
 		that.client = new XMLHttpRequest();
 		that.timeLimitLabel = "Time Remaining";
-		core.setUpVideo();
-		core.setVideoSource('demo1.mp4');
-		core.playVideo();
 	};
 
 	//This function is used to update the state of the Game model
@@ -53,34 +50,8 @@ Game.model = (function(core){
 					hideTimer();
 					that.timerActive = false;
 				}
-				//Movie variable
-				if(that.parsed[11] == "true"){
-					core.setUpVideo();
-					switch(that.parsed[10]){
-						case 2:
-							//Do objective things here (changing the width and location)
-							core.setVideoSource('movie2.mp4');
-							break;
-						case 3:
-							core.setVideoSource('movie3.mp4');
-							break;
-						case 4:
-							core.setVideoSource('movie4.mp4');
-							break
-						case 5:
-							core.setVideoSource('movie5.mp4');
-							break
-						case 6:
-							core.setVideoSource('movie6.mp4');
-							break
-						case 7:
-							core.setVideoSource('movie7.mp4');
-							break;
-					}
-					core.playVideo();
-				}
 				var objectiveString = "";
-				for(var i = 13; i < that.parsed.length; i++){
+				for(var i = 11; i < that.parsed.length; i++){
 					objectiveString += " " + that.parsed[i];
 				}
 				that.updateObjective(objectiveString);

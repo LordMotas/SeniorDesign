@@ -3,7 +3,6 @@ Game.renderer.core = (function(){
 	'use strict';
 	var canvas = null,
 		context = null,
-		video = null,
 		world = {
 			size: 0,
 			top: 0,
@@ -46,7 +45,6 @@ Game.renderer.core = (function(){
 	function initialize(){
 		canvas = document.getElementById('canvas-main');
 		context = canvas.getContext('2d');
-		video = document.getElementById('theVideo');
 
 		window.addEventListener('resize', function(){
 			resizeCanvas();
@@ -62,10 +60,6 @@ Game.renderer.core = (function(){
 		resizeCanvas();
 	}
 
-	function setUpVideo(){
-		video.addEventListener('ended', function(){videoFinished = true;}, false);
-	}
-
 	//Renders the text based on the provided spec
 	function drawText(spec){
 		context.font = spec.font;
@@ -76,25 +70,6 @@ Game.renderer.core = (function(){
 			spec.text,
 			world.left + spec.pos.x * world.size,
 			world.top + spec.pos.y * world.size);
-	}
-
-	function drawVideo(video, width, height){
-		context.drawImage(video, 0, 0, width, height);
-	}
-
-	function renderVideo(){
-		drawVideo(video, canvas.width, canvas.height);
-	}
-
-	function setVideoSource(source){
-		video.src = source;
-		video.type = 'video/mp4';
-	}
-
-	function playVideo(){
-		video.play();
-		videoFinished = false;
-		cancelNextRequest = true;
 	}
 
 	//This returns the height of the specified font
@@ -174,10 +149,6 @@ Game.renderer.core = (function(){
 		drawRectangle: drawRectangle,
 		drawCircle: drawCircle,
 		notifyResize: notifyResize,
-		renderVideo: renderVideo,
-		setUpVideo: setUpVideo,
-		setVideoSource: setVideoSource,
-		playVideo: playVideo
 	};
 
 }());
