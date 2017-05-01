@@ -147,6 +147,6 @@ while True:
 	#Print out the data to the data.txt file
 	file = open("data.txt", "w")
 	file.write("Score " + str(score) + " Level " + str(currentLevel) + " Balls " + str(balls) + " hasTime " + str(isTimed) + " Time " + str(timeLimit) + " " + str(currentLevel) + " " + str(movie) + " Obj " + objective)
-    if(movie == True)
+    if movie == True:
         movie = False
 	file.close()
