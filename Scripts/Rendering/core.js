@@ -1,5 +1,5 @@
 //This namespace provides the core rendering code for the game
-Game.renderer.core = (function(){
+Game.renderer.core = (function(input){
 	'use strict';
 	var canvas = null,
 		context = null,
@@ -181,4 +181,4 @@ Game.renderer.core = (function(){
 		playVideo: playVideo
 	};
 
-}());
+}(Game.input));

@@ -223,8 +223,8 @@
  			menuItem : gamePlay,
  			display : false,
  			reg : {
- 				handlers : [],
- 				keys : [],
+ 				handlers : [function(){videoFinished = true;}],
+ 				keys : [input.KeyEvent.DOM_VK_RETURN],
  			},
  			func : function(){model.initialize();}
  		});
