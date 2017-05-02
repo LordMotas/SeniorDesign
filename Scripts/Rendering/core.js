@@ -3,6 +3,7 @@ Game.renderer.core = (function(){
 	'use strict';
 	var canvas = null,
 		context = null,
+		video = null,
 		world = {
 			size: 0,
 			top: 0,
@@ -45,6 +46,7 @@ Game.renderer.core = (function(){
 	function initialize(){
 		canvas = document.getElementById('canvas-main');
 		context = canvas.getContext('2d');
+		video = document.getElementById('theVideo');
 
 		window.addEventListener('resize', function(){
 			resizeCanvas();
@@ -58,6 +60,30 @@ Game.renderer.core = (function(){
 
 		//Resize the canvas to be the correct size
 		resizeCanvas();
+	}
+
+	function renderVideo(){
+		drawVideo(video, canvas.width, canvas.height);
+	}
+
+	function setUpVideo(){
+		video.addEventListener('ended', function(){
+			videoFinished = true;
+		}, false);
+	}
+
+	function drawVideo(video, width, height){
+		context.drawImage(video, 0, 0, width, height);
+	}
+
+	function setVideoSource(source){
+		video.src = source;
+		video.type = 'video/mp4';
+	}
+
+	function playVideo(){
+		video.play();
+		videoFinished = false;
 	}
 
 	//Renders the text based on the provided spec
@@ -149,6 +175,10 @@ Game.renderer.core = (function(){
 		drawRectangle: drawRectangle,
 		drawCircle: drawCircle,
 		notifyResize: notifyResize,
+		renderVideo: renderVideo,
+		setUpVideo: setUpVideo,
+		setVideoSource: setVideoSource,
+		playVideo: playVideo
 	};
 
 }());

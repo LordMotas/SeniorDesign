@@ -16,7 +16,10 @@ Game.main = (function(renderer, input, menu, model){
 	//Render the game
 	function render(elapsedTime){
 		renderer.core.clearCanvas();
-		menu.render(Game.renderer);
+		if(!videoFinished)
+			renderer.core.renderVideo();
+		else
+			menu.render(Game.renderer);
 	}
 
 	//The gameloop

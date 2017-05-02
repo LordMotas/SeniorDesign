@@ -7,6 +7,7 @@
 </head>
 <body onload="Game.main.initialize();">
 	<canvas id="canvas-main"></canvas>
+	<video id='theVideo'></video>
 	<script>
 		var Game = {
 			input: {},
@@ -19,6 +20,7 @@
 	<script src="Scripts/Input/Keyboard.js"></script>
 	<script>
 		myKeyboard = Game.input.Keyboard();
+		var videoFinished = true;
 	</script>
 	<script src="Scripts/Rendering/core.js"></script>
 	<script src="Scripts/model.js"></script>
