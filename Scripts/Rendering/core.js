@@ -66,6 +66,11 @@ Game.renderer.core = (function(input){
 		drawVideo(video, canvas.width, canvas.height);
 	}
 
+	function pauseVideo(){
+		video.muted = true;
+		video.pause();
+	}
+
 	function setUpVideo(){
 		video.addEventListener('ended', function(){
 			videoFinished = true;
@@ -178,7 +183,8 @@ Game.renderer.core = (function(input){
 		renderVideo: renderVideo,
 		setUpVideo: setUpVideo,
 		setVideoSource: setVideoSource,
-		playVideo: playVideo
+		playVideo: playVideo,
+		pauseVideo: pauseVideo
 	};
 
 }(Game.input));

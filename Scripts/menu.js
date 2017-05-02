@@ -1,5 +1,5 @@
 // This namespace holds the Game main menu
- Game.menu = (function(components, input, model){
+ Game.menu = (function(components, input, model, core){
  	'use strict';
 
  	var currentMenu,
@@ -223,7 +223,7 @@
  			menuItem : gamePlay,
  			display : false,
  			reg : {
- 				handlers : [function(){videoFinished = true;}],
+ 				handlers : [function(){videoFinished = true; core.pauseVideo();}],
  				keys : [input.KeyEvent.DOM_VK_RETURN],
  			},
  			func : function(){model.initialize();}
@@ -395,4 +395,4 @@
 
 	return that;
 
-}(Game.components, Game.input, Game.model));
+}(Game.components, Game.input, Game.model, Game.renderer.core));

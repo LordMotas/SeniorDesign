@@ -176,7 +176,7 @@ Game.model = (function(core){
 		var newX, newFontSize;
 		switch(Number(currentLevel)){
 			case 1:
-				newX = 0.125;	
+				newX = 0.125;
 				newFontSize = 42;
 				break;
 			case 2:
