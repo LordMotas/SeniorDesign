@@ -93,13 +93,13 @@
  			text : 'Time Remaining',
  			font : '42px Arial, sans-serif',
  			fill : 'rgba(255, 255, 255, 1)',
- 			pos : { x : -0.45, y : 0.45 },
+ 			pos : { x : 0.25, y : 0.5 },
  		},
  		textTimeValue = {
  			text : 'N/A',
  			font : '42px Arial, sans-serif',
  			fill : 'rgba(255, 255, 255, 1)',
- 			pos : { x : -0.25, y : 0.55 },
+ 			pos : { x : 0.425, y : 0.6 },
  		},
  		textScore = {
  			text : 'Score',
@@ -287,8 +287,11 @@
  		gamePlay[1].text.text = model.level; //textLevelValue
  		gamePlay[3].text.text = model.balls; //textBallsValue
  		gamePlay[5].text = model.objective; //textObjectiveValue
- 		gamePlay[6].text.text = model.timeLimitLabel;//textTime
- 		gamePlay[7].text.text = model.timeLimit;//textTimeValue
+ 		gamePlay[6].text.text = model.timeLimitLabel;//textTimeLabel
+ 		if(model.timeLimit != undefined){
+			gamePlay[7].text.text = model.timeLimit.name;//textTimeValue
+			gamePlay[7].text.pos = {x : model.timeLimit.x, y : gamePlay[7].text.pos.y};
+		}
  		gamePlay[9].text.text = model.score; //textScoreValue
  	}
 

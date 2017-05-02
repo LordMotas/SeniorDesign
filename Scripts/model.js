@@ -4,7 +4,6 @@ Game.model = (function(core){
 
 	//Variables for the game model go here
 	var that = {};
-	var numTimes = 5;
 
 	//This function initializes the Game model
 	that.initialize = function(){
@@ -13,7 +12,10 @@ Game.model = (function(core){
 		that.score = 0;
 		that.balls = 3;
 		that.hasTimeLimit = false;
-		that.timeLimit = "N/A"; //Measured in milliseconds
+		that.timeLimit = {
+			name : "N/A",
+			x : 0.4
+		};
 		that.objective = {
 			text : "Find the Sorceror's Stone!",
 			font : '42px Arial, sans-serif',
@@ -91,7 +93,7 @@ Game.model = (function(core){
 
 	function hideTimer(){
 		that.timeLimitLabel = "";
-		that.timeLimit = "";
+		that.timeLimit.name = "";
 	}
 
 	function showTimer(){
@@ -102,7 +104,7 @@ Game.model = (function(core){
 		var timeAtTimerSet = performance.now();
 		var min = (timeToSet/1000/60) << 0;
 		var sec = (timeToSet/1000) % 60;
-		that.timeLimit = pad(min) + ":" + pad(sec);
+		that.timeLimit.name = pad(min) + ":" + pad(sec);
 		updateTimer(min, sec);
 	}
 
@@ -122,26 +124,28 @@ Game.model = (function(core){
 			} else {
 				prevSec = prevSec - 1;
 			}
-			that.timeLimit = pad(prevMin) + ":" + pad(prevSec);
+			that.timeLimit.name = pad(prevMin) + ":" + pad(prevSec);
 			updateTimer(prevMin, prevSec);
 		}, 1000);
 	}
 
 	function timerEnd(){
 		setTimeout(function(){
-			that.timeLimit = "Time's Up!";
+			that.timeLimit.name = "Time's Up!";
+			that.timeLimit.x = 0.35;
 			setTimeout(function(){
-				that.timeLimit = "";
+				that.timeLimit.name = "";
 				setTimeout(function(){
-					that.timeLimit = "Time's Up!";
+					that.timeLimit.name = "Time's Up!";
 					setTimeout(function(){
-						that.timeLimit = "";
+						that.timeLimit.name = "";
 						setTimeout(function(){
-							that.timeLimit = "Time's Up!";
+							that.timeLimit.name = "Time's Up!";
 							setTimeout(function(){
-								that.timeLimit = "";
+								that.timeLimit.name = "";
 								setTimeout(function(){
-									that.timeLimit = "N/A";
+									that.timeLimit.name = "N/A";
+									that.timeLimit.x = 0.425;
 								}, 500);
 							}, 500);
 						}, 500);
@@ -172,7 +176,7 @@ Game.model = (function(core){
 		var newX, newFontSize;
 		switch(Number(currentLevel)){
 			case 1:
-				newX = 0.1;	
+				newX = 0.125;	
 				newFontSize = 42;
 				break;
 			case 2:
