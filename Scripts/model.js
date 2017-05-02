@@ -18,7 +18,7 @@ Game.model = (function(core){
 			text : "Find the Sorceror's Stone!",
 			font : '42px Arial, sans-serif',
 			fill : 'rgba(255, 255, 255, 1)',
-			pos : { x : 0.10, y : 0.35 },
+			pos : { x : 0.3, y : 0.35 },
 		};
 		that.raw = "";
 		that.parsed = "";
@@ -83,7 +83,7 @@ Game.model = (function(core){
 				for(var i = 13; i < that.parsed.length; i++){
 					objectiveString += " " + that.parsed[i];
 				}
-				that.updateObjective(objectiveString);
+				that.updateObjective(objectiveString, that.parsed[3]);
 			}
 		}
 		that.client.send();
@@ -164,14 +164,44 @@ Game.model = (function(core){
 		that.level = currentLevel;
 	};
 
-	that.updateObjective = function(currentObjective){
+	that.updateObjective = function(currentObjective, currentLevel){
 		that.objective = {
 			text : currentObjective,
-			font : '42px Arial, sans-serif',
 			fill : 'rgba(255, 255, 255, 1)',
 		};
-		//Hard code the positions for each objective since there are only 7 of them
-		that.objective.pos = { x : 0.1, y : 0.35 };
+		var newX, newFontSize;
+		switch(Number(currentLevel)){
+			case 1:
+				newX = 0.1;	
+				newFontSize = 42;
+				break;
+			case 2:
+				newX = -0.15;
+				newFontSize = 42;
+				break;
+			case 3:
+				newX = 0.0;
+				newFontSize = 42;
+				break;
+			case 4:
+				newX = 0.0;
+				newFontSize = 42;
+				break;
+			case 5:
+				newX = -0.155;
+				newFontSize = 42;
+				break;
+			case 6:
+				newX = 0.125;
+				newFontSize = 42;
+				break;
+			case 7:
+				newX = -0.1;
+				newFontSize = 42;
+				break;
+		}
+		that.objective.font = Number(newFontSize) + 'px Arial, sans-serif',
+		that.objective.pos = { x : newX, y : 0.35 };
 	};
 
 	//This function renders the Game model

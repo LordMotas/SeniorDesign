@@ -10,13 +10,6 @@ import sys
 import webbrowser
 import os
 
-# Necessary for music playing
-import pygame
-pygame.mixer.init()
-
-#pygame.mixer.music.load("Audio/menuRemix.mp3");
-#pygame.mixer.music.play();
-
 #Open the local file to display on the monitor
 webbrowser.open("http://localhost/SeniorDesign/index.html", new=0)
 
@@ -39,6 +32,7 @@ isTimed = False
 timeLimit = 300000 # 300000 milliseconds = 5 minutes
 objective = "Find the Sorceror's Stone!"
 movie = False
+additionalObjec = ""
 
 #Dictionary holding level data
 def levelDictionary(value):
@@ -54,27 +48,29 @@ def levelDictionary(value):
 #Functions used by the Dictionary
 def setLevelTwo():
     isTimed = False
-    objective = "Kill the Basilisk!"
+    objective = "Kill the Basilisk with the Sword and destroy the Diary!"
 
 def setLevelThree():
-    isTimed = False
-    objective = ""
+    isTimed = True
+    objective = "Defend yourself against the Dementors!"
 
 def setLevelFour():
     isTimed = False
-    objective = ""
+    objective = "Win the Triwizard Tournament!"
+    additionalObject = "(Dragon)"
 
 def setLevelFive():
     isTimed = False
-    objective = ""
+    objective = "Defeat the Death Eaters and preserve the Prophecy!"
 
 def setLevelSix():
     isTimed = False
-    objective = ""
+    objective = "Capture the Golden Snitch!"
 
 def setLevelSeven():
     isTimed = False
-    objective = ""
+    objective = "Assemble the Deathly Hallows!"
+    additionalObjec = "(Invisibility Cloak)"
 
 #Functions that are used:
 def addToScore(value):
@@ -146,7 +142,7 @@ while True:
 	#Gather data based on every kind of interrupt the Arduino can do
 	#Print out the data to the data.txt file
 	file = open("data.txt", "w")
-	file.write("Score " + str(score) + " Level " + str(currentLevel) + " Balls " + str(balls) + " hasTime " + str(isTimed) + " Time " + str(timeLimit) + " " + str(currentLevel) + " " + str(movie) + " Obj " + objective)
+	file.write("Score " + str(score) + " Level " + str(currentLevel) + " Balls " + str(balls) + " hasTime " + str(isTimed) + " Time " + str(timeLimit) + " " + str(currentLevel) + " " + str(movie) + " Obj " + objective + additionalObjec)
     if movie == True:
         movie = False
 	file.close()
