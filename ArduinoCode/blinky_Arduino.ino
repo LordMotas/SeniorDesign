@@ -1,6 +1,6 @@
 //#define LEDPIN 13
 //  // Pin 13: Arduino has an LED connected on pin 13
-//  
+//
 //#define SENSORPIN 10
 //
 //// variables will change:
@@ -29,15 +29,15 @@ int led20 = 37;
 int led21 = 38;
 
 void setup(){
-  
+
 //  // initialize the LED pin as an output:
-//  pinMode(LEDPIN, OUTPUT);      
+//  pinMode(LEDPIN, OUTPUT);
 //  // initialize the sensor pin as an input:
-//  pinMode(SENSORPIN, INPUT);     
+//  pinMode(SENSORPIN, INPUT);
 //  digitalWrite(SENSORPIN, HIGH); // turn on the pullup
-//  
+//
 //  Serial.begin(9600);
-  
+
   pinMode(led01, OUTPUT);
   pinMode(led02, OUTPUT);
   pinMode(led03, OUTPUT);
@@ -67,23 +67,23 @@ void loop(){
 //
 //  // check if the sensor beam is broken
 //  // if it is, the sensorState is LOW:
-//  if (sensorState == LOW) {     
+//  if (sensorState == LOW) {
 //    // turn LED on:
-//    digitalWrite(LEDPIN, HIGH);  
-//  } 
+//    digitalWrite(LEDPIN, HIGH);
+//  }
 //  else {
 //    // turn LED off:
-//    digitalWrite(LEDPIN, LOW); 
+//    digitalWrite(LEDPIN, LOW);
 //  }
-//  
+//
 //  if (sensorState && !lastState) {
 //    Serial.println("Unbroken");
-//  } 
+//  }
 //  if (!sensorState && lastState) {
 //    Serial.println("Broken");
 //  }
 //  lastState = sensorState;
-  
+
   digitalWrite(led01, HIGH);
   delay(800);
   digitalWrite(led01, LOW);
@@ -149,4 +149,3 @@ void loop(){
   digitalWrite(led21, LOW);
   delay(1600);
 }
-
