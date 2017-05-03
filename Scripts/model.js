@@ -28,7 +28,7 @@ Game.model = (function(core){
 		that.client = new XMLHttpRequest();
 		that.timeLimitLabel = "Time Remaining";
 		core.setUpVideo();
-		core.setVideoSource('demo1.mp4');
+		core.setVideoSource('Movies/movie1.mp4');
 		core.playVideo();
 	};
 
@@ -61,22 +61,22 @@ Game.model = (function(core){
 					switch(that.parsed[10]){
 						case 2:
 							//Do objective things here (changing the width and location)
-							core.setVideoSource('movie2.mp4');
+							core.setVideoSource('Movies/movie2.mp4');
 							break;
 						case 3:
-							core.setVideoSource('movie3.mp4');
+							core.setVideoSource('Movies/movie3.mp4');
 							break;
 						case 4:
-							core.setVideoSource('movie4.mp4');
+							core.setVideoSource('Movies/movie4.mp4');
 							break
 						case 5:
-							core.setVideoSource('movie5.mp4');
+							core.setVideoSource('Movies/movie5.mp4');
 							break
 						case 6:
-							core.setVideoSource('movie6.mp4');
+							core.setVideoSource('Movies/movie6.mp4');
 							break
 						case 7:
-							core.setVideoSource('movie7.mp4');
+							core.setVideoSource('Movies/movie7.mp4');
 							break;
 					}
 					core.playVideo();
