@@ -29,7 +29,6 @@ Game.model = (function(core){
 		that.timeLimitLabel = "Time Remaining";
 		core.setUpVideo();
 		core.setVideoSource('Movies/movie1.mp4');
-		core.playVideo();
 	};
 
 	//This function is used to update the state of the Game model
@@ -79,8 +78,6 @@ Game.model = (function(core){
 							core.setVideoSource('Movies/movie7.mp4');
 							break;
 					}
-					videoStarted = true;
-					core.playVideo();
 				}
 				var objectiveString = "";
 				for(var i = 12; i < that.parsed.length; i++){

@@ -82,22 +82,26 @@ Game.renderer.core = (function(input){
 		video.addEventListener('timeupdate', function(){
 			console.log("video is running");
 		}, false);
+		console.log("Setting up the video");
 	}
 
 	function drawVideo(video, width, height){
+		if(width > canvas.width)
+			width = canvas.width;
+		if(height > canvas.height)
+			height = canvas.height;
 		context.drawImage(video, 0, 0, width, height);
 	}
 
 	function setVideoSource(fileName){
 		source.setAttribute('src', fileName);
 		video.load();
-		video.muted = false;
-		video.play();
-	}
-
-	function playVideo(){
-		video.play();
-		videoFinished = false;
+		video.oncanplay = function(){
+			video.muted = false;
+			video.play();
+			videoStarted = true;
+			videoFinished = false;
+		}
 	}
 
 	//Renders the text based on the provided spec
@@ -192,7 +196,6 @@ Game.renderer.core = (function(input){
 		renderVideo: renderVideo,
 		setUpVideo: setUpVideo,
 		setVideoSource: setVideoSource,
-		playVideo: playVideo,
 		pauseVideo: pauseVideo
 	};
 

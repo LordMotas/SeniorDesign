@@ -1,1 +1,1 @@
-Score 7000 Level 2 Balls 3 hasTime false Time 300000 true Obj Find the Sorceror's Stone!
+Score 7000 Level 1 Balls 3 hasTime false Time 300000 false Obj Find the Sorceror's Stone!
