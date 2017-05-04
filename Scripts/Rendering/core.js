@@ -4,7 +4,6 @@ Game.renderer.core = (function(input){
 	var canvas = null,
 		context = null,
 		video = null,
-		source = null,
 		world = {
 			size: 0,
 			top: 0,
@@ -48,8 +47,6 @@ Game.renderer.core = (function(input){
 		canvas = document.getElementById('canvas-main');
 		context = canvas.getContext('2d');
 		video = document.getElementById('theVideo');
-		source = document.createElement('source');
-		video.appendChild(source);
 
 		window.addEventListener('resize', function(){
 			resizeCanvas();
@@ -94,7 +91,7 @@ Game.renderer.core = (function(input){
 	}
 
 	function setVideoSource(fileName){
-		source.setAttribute('src', fileName);
+		video.src = fileName;
 		video.load();
 		video.oncanplay = function(){
 			video.muted = false;
