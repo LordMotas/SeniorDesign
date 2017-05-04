@@ -1,4 +1,4 @@
-@font-face {		
+@font-face {
 	font-family: 'ParryHotter';
 	src: url('ParryHotter.ttf');
 }
@@ -9,9 +9,9 @@ body {
 	margin: 0px;
 	border: 0;
 	overflow: hidden; /* Disable scrollbars */
--	display: block; /* No floating content on sides */
+	display: block; /* No floating content on sides */
 	background-color: black;
-
+}
 
 #canvas-main {
 	position: absolute;
