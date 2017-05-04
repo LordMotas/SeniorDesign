@@ -1,5 +1,5 @@
 // This namespace holds the Game model.
-Game.model = (function(core){
+Game.model = (function(core, music){
 	'use strict';
 
 	//Variables for the game model go here
@@ -27,8 +27,9 @@ Game.model = (function(core){
 		that.timerActive = false;
 		that.client = new XMLHttpRequest();
 		that.timeLimitLabel = "Time Remaining";
-		core.setUpVideo();
-		core.setVideoSource('Movies/movie1.mp4');
+		music.playMusic('Audio/menu');
+		//core.setUpVideo();
+		//core.setVideoSource('Movies/movie1.mp4');
 	};
 
 	//This function is used to update the state of the Game model
@@ -54,30 +55,9 @@ Game.model = (function(core){
 					hideTimer();
 					that.timerActive = false;
 				}
-				//Movie variable
-				if(that.parsed[10] == "true" && !videoStarted){
-					core.setUpVideo();
-					switch(Number(that.parsed[3])){
-						case 2:
-							//Do objective things here (changing the width and location)
-							core.setVideoSource('Movies/movie2.mp4');
-							break;
-						case 3:
-							core.setVideoSource('Movies/movie3.mp4');
-							break;
-						case 4:
-							core.setVideoSource('Movies/movie4.mp4');
-							break
-						case 5:
-							core.setVideoSource('Movies/movie5.mp4');
-							break
-						case 6:
-							core.setVideoSource('Movies/movie6.mp4');
-							break
-						case 7:
-							core.setVideoSource('Movies/movie7.mp4');
-							break;
-					}
+				//Music update
+				if(!audioStarted){
+					Game.music.playMusic('Audio/menu');
 				}
 				var objectiveString = "";
 				for(var i = 12; i < that.parsed.length; i++){
@@ -213,4 +193,4 @@ Game.model = (function(core){
 
 	return that;
 
-}(Game.renderer.core));
+}(Game.renderer.core, Game.music));

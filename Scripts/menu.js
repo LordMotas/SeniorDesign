@@ -1,5 +1,5 @@
 // This namespace holds the Game main menu
- Game.menu = (function(components, input, model, core){
+ Game.menu = (function(components, input, model, core, music){
  	'use strict';
 
  	var currentMenu,
@@ -208,6 +208,8 @@
  		aboutMenu.push({text : textDeveloped, back : 0});
  		aboutMenu.push({text : textAboutInfo});
 
+    music.playMusic('Audio/menu');
+
  		//index 0
  		menus.push({
  			menuItem : mainMenu,
@@ -216,6 +218,9 @@
  				handlers : [function(){that.toggleMenuDown();}, function(){that.toggleMenuUp();}, function(){that.selectMenu(myKeyboard);}, function(){that.cancelButton(myKeyboard);}],
  				keys : [input.KeyEvent.DOM_VK_DOWN, input.KeyEvent.DOM_VK_UP, input.KeyEvent.DOM_VK_RETURN, input.KeyEvent.DOM_VK_X],
  			},
+      func : function(){
+        music.playMusic('Audio/menu');
+      }
  		});
 
  		//index 1
@@ -223,8 +228,8 @@
  			menuItem : gamePlay,
  			display : false,
  			reg : {
- 				handlers : [function(){videoFinished = true; core.pauseVideo();}],
- 				keys : [input.KeyEvent.DOM_VK_RETURN],
+ 				handlers : [],
+ 				keys : [],
  			},
  			func : function(){model.initialize();}
  		});
@@ -395,4 +400,4 @@
 
 	return that;
 
-}(Game.components, Game.input, Game.model, Game.renderer.core));
+}(Game.components, Game.input, Game.model, Game.renderer.core, Game.music));
