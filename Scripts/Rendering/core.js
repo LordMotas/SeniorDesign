@@ -79,6 +79,9 @@ Game.renderer.core = (function(input){
 			videoFinished = true;
 			videoStarted = false;
 		}, false);
+		video.addEventListener('timeupdate', function(){
+			console.log("video is running");
+		}, false);
 	}
 
 	function drawVideo(video, width, height){
