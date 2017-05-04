@@ -12,7 +12,7 @@ import os
 
 import pygame
 pygame.mixer.init()
-pygame.mixer.music.load("menu.mp3")
+pygame.mixer.music.load("song.mp3")
 pygame.mixer.music.play()
 pygame.mixer.music.set_volume(1.0)
 
