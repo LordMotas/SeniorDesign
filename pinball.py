@@ -84,7 +84,7 @@ def incrementLevel():
     #If statements here to determine music to be played
     levelDictionary(currentLevel)
 
-def modifyBalls(value):
+def addToBalls(value):
 	global balls
 	balls = balls + int(value)
 
@@ -125,7 +125,7 @@ while True:
             addToScore(rcv[6:-1])
             #print "Score is now", score
 	elif rcv[:5] == "balls":
-	    modifyBalls(rcv[6:-1])
+	    addToBalls(rcv[6:-1])
 	    #print "You now have ", balls, " balls left"
 	elif rcv[:5] == "timed":
 	    changeTimerState(rcv[6:-1])
