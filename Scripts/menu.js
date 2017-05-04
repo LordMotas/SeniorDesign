@@ -163,7 +163,7 @@
  		mainMenu.push({text : textAbout, select : 4});
 
  		//Initialize the gameplay section
- 		gamePlay.push({text : textLevel});
+ 		gamePlay.push({text : textLevel, select : 0});
  		gamePlay.push({text : textLevelValue});
  		gamePlay.push({text : textBalls});
  		gamePlay.push({text : textBallsValue});
@@ -300,9 +300,13 @@
 		//Update the menu item that is being hovered
 		if(currentMenu == 0) //Only works on the main menu
 			changeSelectionVisual(currentMenu, previousSelection, menuSelection);
-		if(currentMenu == 1)
+		if(currentMenu == 1 && modelInitialized)
 			model.update(elapsedTime);
 		updateTexts();
+    if(currentMenu === 1 && Number(model.balls) === 0){
+      that.selectMenu(myKeyboard);
+      modelInitialized = false;
+    }
 	};
 
 	that.toggleMenuDown = function(){

@@ -27,6 +27,7 @@ Game.model = (function(core, music){
 		that.timerActive = false;
 		that.client = new XMLHttpRequest();
 		that.timeLimitLabel = "Time Remaining";
+		modelInitialized = true;
 	};
 
 	//This function is used to update the state of the Game model
@@ -51,10 +52,6 @@ Game.model = (function(core, music){
 					//Hide the timer since there isn't one
 					hideTimer();
 					that.timerActive = false;
-				}
-				//Music update
-				if(!audioStarted){
-					Game.music.playMusic('Audio/menu');
 				}
 				var objectiveString = "";
 				for(var i = 12; i < that.parsed.length; i++){
