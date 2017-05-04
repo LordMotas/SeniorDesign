@@ -10,6 +10,11 @@ import sys
 import webbrowser
 import os
 
+import pygame
+pygame.mixer.init()
+pygame.mixer.music.load("Audio.menu.mp3")
+pygame.mixer.music.play()
+
 #Open the local file to display on the monitor
 webbrowser.open("http://localhost/SeniorDesign/index.html", new=0)
 

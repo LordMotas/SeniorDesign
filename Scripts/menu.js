@@ -208,8 +208,6 @@
  		aboutMenu.push({text : textDeveloped, back : 0});
  		aboutMenu.push({text : textAboutInfo});
 
-    music.playMusic('Audio/menu');
-
  		//index 0
  		menus.push({
  			menuItem : mainMenu,
@@ -218,9 +216,6 @@
  				handlers : [function(){that.toggleMenuDown();}, function(){that.toggleMenuUp();}, function(){that.selectMenu(myKeyboard);}, function(){that.cancelButton(myKeyboard);}],
  				keys : [input.KeyEvent.DOM_VK_DOWN, input.KeyEvent.DOM_VK_UP, input.KeyEvent.DOM_VK_RETURN, input.KeyEvent.DOM_VK_X],
  			},
-      func : function(){
-        music.playMusic('Audio/menu');
-      }
  		});
 
  		//index 1

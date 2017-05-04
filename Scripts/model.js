@@ -27,9 +27,6 @@ Game.model = (function(core, music){
 		that.timerActive = false;
 		that.client = new XMLHttpRequest();
 		that.timeLimitLabel = "Time Remaining";
-		music.playMusic('Audio/menu');
-		//core.setUpVideo();
-		//core.setVideoSource('Movies/movie1.mp4');
 	};
 
 	//This function is used to update the state of the Game model
