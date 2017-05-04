@@ -56,9 +56,10 @@ Game.model = (function(core){
 					that.timerActive = false;
 				}
 				//Movie variable
-				if(that.parsed[11] == "true"){
+				console.log(that.parsed[3]);
+				if(that.parsed[10] == "true"){
 					core.setUpVideo();
-					switch(that.parsed[10]){
+					switch(that.parsed[3]){
 						case 2:
 							//Do objective things here (changing the width and location)
 							core.setVideoSource('Movies/movie2.mp4');
@@ -82,7 +83,7 @@ Game.model = (function(core){
 					core.playVideo();
 				}
 				var objectiveString = "";
-				for(var i = 13; i < that.parsed.length; i++){
+				for(var i = 12; i < that.parsed.length; i++){
 					objectiveString += " " + that.parsed[i];
 				}
 				that.updateObjective(objectiveString, that.parsed[3]);
