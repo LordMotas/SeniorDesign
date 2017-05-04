@@ -12,8 +12,9 @@ import os
 
 import pygame
 pygame.mixer.init()
-pygame.mixer.music.load("Audio.menu.mp3")
+pygame.mixer.music.load("menu.mp3")
 pygame.mixer.music.play()
+pygame.mixer.music.set_volume(1.0)
 
 #Open the local file to display on the monitor
 webbrowser.open("http://localhost/SeniorDesign/index.html", new=0)
